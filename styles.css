@@ -1,0 +1,217 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+:root {
+  --surface: #ffffff;
+  --muted: #6c757d;
+  --primary: #0d6efd;
+  --primary-soft: rgba(13, 110, 253, 0.12);
+  --accent: #20c997;
+  --shadow: rgba(15, 23, 42, 0.08);
+  --border-soft: rgba(148, 163, 184, 0.24);
+  --bg: #f5f7fb;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background: linear-gradient(180deg, rgba(245, 247, 251, 0.72), rgba(229, 234, 244, 0.38)),
+    var(--bg);
+  color: #1e293b;
+  min-height: 100vh;
+}
+
+.search-bar {
+  border-radius: 999px;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.search-bar:focus-within {
+  box-shadow: 0 15px 45px -25px rgba(15, 23, 42, 0.6);
+  transform: translateY(-2px);
+}
+
+.search-bar input {
+  padding: 0.8rem 1.2rem;
+  font-size: 1rem;
+}
+
+#servicesGrid {
+  position: relative;
+  z-index: 1;
+}
+
+.service-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  border-radius: 1.75rem;
+  overflow: hidden;
+}
+
+.service-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 25px 50px -20px rgba(15, 23, 42, 0.25);
+}
+
+.service-card__image {
+  background: linear-gradient(135deg, rgba(13, 110, 253, 0.18), rgba(32, 201, 151, 0.2)),
+    url("https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1200&q=80")
+      center/cover no-repeat;
+}
+
+.service-card__category {
+  background: var(--primary-soft);
+  color: var(--primary);
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  font-size: 0.7rem;
+}
+
+.service-card__price {
+  color: var(--accent);
+  font-size: 1.05rem;
+}
+
+.service-card__title {
+  color: #0f172a;
+}
+
+.service-card__description {
+  min-height: 60px;
+}
+
+.service-card__tags span {
+  background: rgba(15, 23, 42, 0.05);
+  color: #475569;
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.empty-icon svg {
+  opacity: 0.6;
+}
+
+.service-popup__overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1.5rem, 3vw, 3rem);
+  z-index: 1000;
+  animation: fadeIn 0.3s ease both;
+}
+
+.service-popup__overlay.closing {
+  animation: fadeOut 0.25s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+}
+
+.service-popup {
+  position: relative;
+  padding: clamp(1.75rem, 3vw, 3rem);
+  max-width: 960px;
+}
+
+.service-popup__close {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  background: rgba(15, 23, 42, 0.05);
+  border-radius: 999px;
+}
+
+.service-popup__media {
+  background: linear-gradient(135deg, rgba(13, 110, 253, 0.4), rgba(123, 97, 255, 0.35)),
+    url("https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80")
+      center/cover no-repeat;
+  min-height: 240px;
+  box-shadow: 0 30px 60px -30px rgba(15, 23, 42, 0.35);
+}
+
+.service-popup__tags span {
+  background: rgba(32, 201, 151, 0.12);
+  color: var(--accent);
+  border-radius: 999px;
+  padding: 0.35rem 0.9rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.service-popup__features li {
+  background: rgba(15, 23, 42, 0.03);
+  border-radius: 1rem;
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #475569;
+}
+
+.service-popup__features li::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--primary);
+  box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.2);
+}
+
+.service-popup__price {
+  color: #0f172a;
+}
+
+.service-popup__action {
+  border-radius: 999px;
+}
+
+@media (max-width: 991px) {
+  .service-popup {
+    padding: 2rem clamp(1.25rem, 4vw, 2rem);
+  }
+
+  .service-popup__media {
+    min-height: 200px;
+  }
+}
+
+@media (max-width: 575px) {
+  .service-card__description {
+    min-height: auto;
+  }
+
+  .service-popup {
+    padding: 2rem 1.25rem;
+  }
+
+  .service-popup__media {
+    min-height: 180px;
+  }
+}
